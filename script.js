@@ -1,5 +1,17 @@
 let weather = {
     apiKey: "c082827540eee0a78fe45b93fe26fe8b",
+    // for users location
+    fetchLocation : function(city){
+      fetch('https://ipapi.co/json/')
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+      console.log(data);
+     });
+     
+    },
+    //for users input
     fetchWeather: function (city) {
       fetch(
         "https://api.openweathermap.org/data/2.5/weather?q=" +
@@ -50,4 +62,3 @@ let weather = {
         weather.search();
       }
     });
-  
