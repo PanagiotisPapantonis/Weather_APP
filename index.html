@@ -9,6 +9,44 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style.css">
   <script src="./script.js" defer></script>
+  <!--User script-->
+  <script>
+    async function getUserData() {
+      const response = await fetch('http://ip-api.com/json/');
+      const data = await response.json();
+      if (response.status === 200) {
+        document.getElementById("ipU").textContent = data.query;
+        document.getElementById("cityU").textContent = data.city;
+        document.getElementById("regionU").textContent = data.regionName;
+        document.getElementById("countryU").textContent = data.country;
+        document.getElementById("ispU").textContent = data.isp;
+      } else {
+        alert("Δεν ήταν δυνατή η λήψη των πληροφοριών του χρήστη.");
+      }
+    }
+
+    function detectBrowser() {
+      let userAgent = navigator.userAgent;
+      let browser;
+      if(userAgent.match(/edg/i)){
+        browser = "edge";
+      }else if(userAgent.match(/firefox|fxios/i)){
+        browser = "firefox";
+      }else if(userAgent.match(/opr\//i)){
+        browser = "opera";
+      }else if(userAgent.match(/chrome|chromium|crios/i)){
+        browser = "chrome";
+      }else if(userAgent.match(/safari/i)){
+        browser = "safari";
+      }else{
+        alert("Other browser");
+      }
+      const logo = document.querySelector(`.logos .${browser}`);
+      if(logo){
+        logo.style.opacity = "1";
+      }
+    }
+  </script>
 </head>
 
 <body onload="getUserData(); detectBrowser();">
