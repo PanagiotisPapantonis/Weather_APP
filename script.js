@@ -50,6 +50,7 @@ let weather = {
         weather.search();
       }
     });
+    //users
     async function getUserData() {
       const response = await fetch('http://ip-api.com/json/');
       const data = await response.json();
