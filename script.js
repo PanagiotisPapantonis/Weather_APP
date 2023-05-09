@@ -54,11 +54,11 @@ let weather = {
       const response = await fetch('http://ip-api.com/json/');
       const data = await response.json();
       if (response.status === 200) {
-        document.getElementById("ip").textContent = data.query;
-        document.getElementById("city").textContent = data.city;
-        document.getElementById("region").textContent = data.regionName;
-        document.getElementById("country").textContent = data.country;
-        document.getElementById("isp").textContent = data.isp;
+        document.getElementById("ipU").textContent = data.query;
+        document.getElementById("cityU").textContent = data.city;
+        document.getElementById("regionU").textContent = data.regionName;
+        document.getElementById("countryU").textContent = data.country;
+        document.getElementById("ispU").textContent = data.isp;
       } else {
         alert("Δεν ήταν δυνατή η λήψη των πληροφοριών του χρήστη.");
       }
