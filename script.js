@@ -50,3 +50,38 @@ let weather = {
         weather.search();
       }
     });
+    async function getUserData() {
+      const response = await fetch('http://ip-api.com/json/');
+      const data = await response.json();
+      if (response.status === 200) {
+        document.getElementById("ip").textContent = data.query;
+        document.getElementById("city").textContent = data.city;
+        document.getElementById("region").textContent = data.regionName;
+        document.getElementById("country").textContent = data.country;
+        document.getElementById("isp").textContent = data.isp;
+      } else {
+        alert("Δεν ήταν δυνατή η λήψη των πληροφοριών του χρήστη.");
+      }
+    }
+
+    function detectBrowser() {
+      let userAgent = navigator.userAgent;
+      let browser;
+      if(userAgent.match(/edg/i)){
+        browser = "edge";
+      }else if(userAgent.match(/firefox|fxios/i)){
+        browser = "firefox";
+      }else if(userAgent.match(/opr\//i)){
+        browser = "opera";
+      }else if(userAgent.match(/chrome|chromium|crios/i)){
+        browser = "chrome";
+      }else if(userAgent.match(/safari/i)){
+        browser = "safari";
+      }else{
+        alert("Other browser");
+      }
+      const logo = document.querySelector(`.logos .${browser}`);
+      if(logo){
+        logo.style.opacity = "1";
+      }
+    }

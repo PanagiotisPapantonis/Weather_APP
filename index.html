@@ -34,23 +34,27 @@
     </div>
   </div>
   <!--Users Ip location-->
-  <div class="card">
-    <div class="search">
-      <div class="button">
-        <h3>Press Here to see your location's weather</h3>
-      </div>
+  <body onload="getUserData(); detectBrowser();">
+    <div class="wrapper" id="informations"> 
+    <h1>Πληροφορίες χρήστη</h1>
+    <p>IP: <span id="ip"></span></p>
+    <p>Πόλη: <span id="city"></span></p>
+    <p>Περιοχή: <span id="region"></span></p>
+    <p>Χώρα: <span id="country"></span></p>
+    <p>ISP: <span id="isp"></span></p>
     </div>
-    <div class="weather loading1">
-      <h2 class="city"></h2>
-      <h1 class="temp"></h1>
-      <div class="flex">
-        <img src="https://openweathermap.org/img/wn/04n.png" alt="" class="icon" />
-        <div class="description"></div>
+    <p></p>
+    <div class="wrapper" id="browser">
+      <h2>Browser:</h2>
+      <div class="logos">
+        <img class="chrome" src="logos/chrome.png" alt="chrome" title="Google Chrome">
+        <img class="firefox" src="logos/firefox.png" alt="firefox" title="Mozilla Firefox">
+        <img class="edge" src="logos/edge.png" alt="edge" title="Microsoft Edge">
+        <img class="opera" src="logos/opera.png" alt="opera" title="Opera">
+        <img class="safari" src="logos/safari.png" alt="safari" title="Apple Safari">
+        </div>
       </div>
-      <div class="humidity"></div>
-      <div class="wind"></div>
-    </div>
-  </div>
+    </body>
 </body>
 
 </html>
