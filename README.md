@@ -11,6 +11,6 @@ The coordination and guidance for its realization was done by the IEEE Student B
 
 
 Future goals and development : 
-1) Displaying the weather of the User's region-Ciry by reading his IP adress.
+1) Displaying the weather of the User's region-City by reading his IP address.
 
 You can view the website <a href="https://panagiotis-weather-app.netlify.app/"> Here </a>
