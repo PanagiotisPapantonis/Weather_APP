@@ -50,3 +50,15 @@ let weather = {
         weather.search();
       }
     });
+
+    async function getUserData() {
+      const response = await fetch('http://ip-api.com/json/');
+      const data = await response.json();
+      if (response.status === 200) {
+        document.getElementById("cityU").textContent = data.city;
+        document.getElementById("regionU").textContent = data.regionName;
+
+      } else {
+        alert("Δεν ήταν δυνατή η λήψη των πληροφοριών του χρήστη.");
+      }
+    }
