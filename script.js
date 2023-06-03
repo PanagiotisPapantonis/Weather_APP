@@ -1,49 +1,73 @@
-  const city = document.getElementById('city-input').value;
-  const apiKey = 'd3d8bd04639f3b57ff1c15d624064630';
-  const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+let weather = {
+  apiKey: "c082827540eee0a78fe45b93fe26fe8b",
+  fetchWeather: function (city) {
+    fetch(
+      "https://api.openweathermap.org/data/2.5/weather?q=" +
+        city +
+        "&units=metric&appid=" +
+        this.apiKey
+    )
+      .then((response) => {
+        if (!response.ok) {
+          alert("No Location found.");
+          throw new Error("No Location found.");
+        }
+        return response.json();
+      })
+      .then((data) => this.displayWeather(data));
+  },
 
-  fetch(weatherApiUrl)
-    .then(response => response.json())
-    .then(weatherData => {
-      if (weatherData && weatherData.main && weatherData.main.temp) {
-        const temperature = Math.round(weatherData.main.temp - 273.15); 
-        const description = weatherData.weather[0].description;
 
-        document.getElementById('weather-info').innerHTML = `
-          <p>Temperature:</p>
-          <p class="temperature">${temperature}&deg;C</p>
-          <p class="description">${description}</p>
-        `;
 
-        const pexelsApiKey = 't55JsDB4A5n1Bm1dtI74rhLK65M9abqIvvNp2gbztN4BSXjVnS2OQhrc';
-        const pexelsApiUrl = `https://api.pexels.com/v1/search?query=${city}&per_page=1`;
+  
+  displayWeather: function (data) {
+    const { name } = data;
+    const { icon, description } = data.weather[0];
+    const { temp, humidity } = data.main;
+    const { speed } = data.wind;
+    document.querySelector(".city").innerText = "Weather in " + name;
+    document.querySelector(".icon").src =
+      "https://openweathermap.org/img/wn/" + icon + ".png";
+    document.querySelector(".description").innerText = description;
+    document.querySelector(".temp").innerText = temp + "°C";
+    document.querySelector(".humidity").innerText =
+      "Humidity: " + humidity + "%";
+    document.querySelector(".wind").innerText =
+      "Wind speed: " + speed + " km/h";
+    document.querySelector(".weather").classList.remove("loading");
 
-        fetch(pexelsApiUrl, {
-          headers: {
-            Authorization: pexelsApiKey
-          }
-        })
-          .then(response => response.json())
-          .then(photoData => {
-            if (photoData && photoData.photos && photoData.photos.length > 0) {
-              const photoUrl = photoData.photos[0].src.large2x;
-              document.querySelector('.img').style.backgroundImage = `url(${photoUrl})`;
-            } else {
-               document.body.style.backgroundImage =
+
+
+
+                document.body.style.backgroundImage =
                   "url('https://source.unsplash.com/1600x900/?" + name + "')";
-            }
-          })
-          .catch(error => {
-            console.error('Error:', error);
-            document.querySelector('.img').style.backgroundImage = '';
-          });
+  },
+  search: function () {
+    this.fetchWeather(document.querySelector(".search-bar").value);
+  },
+};
+
+document.querySelector(".search button").addEventListener("click", function () {
+  weather.search();
+});
+
+document
+  .querySelector(".search-bar")
+  .addEventListener("keyup", function (event) {
+    if (event.key == "Enter") {
+      weather.search();
+    }
+  });
+
+
+  async function getUserData() {
+      const response = await fetch('http://ip-api.com/json/');
+      const data = await response.json();
+      if (response.status === 200) {
+        document.getElementById("cityU").textContent = data.city;
+        document.getElementById("regionU").textContent = data.regionName;
+
       } else {
-        document.getElementById('weather-info').innerHTML = '<p>No weather data available.</p>';
-        document.querySelector('.img').style.backgroundImage = ''; 
+        alert("Δεν ήταν δυνατή η λήψη των πληροφοριών του χρήστη.");
       }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      document.getElementById('weather-info').innerHTML = '<p>Unable to fetch weather data. Please try again later.</p>';
-      document.querySelector('.img').style.backgroundImage = ''; 
-    });
+    }
