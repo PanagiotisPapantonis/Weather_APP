@@ -49,7 +49,7 @@ let weather = {
       .then(photoData => {
         if (photoData && photoData.photos && photoData.photos.length > 0) {
           const photoUrl = photoData.photos[0].src.large2x;
-          document.querySelector('.img').style.backgroundImage = `url(${photoUrl})`;
+          document.body.style.backgroundImage = `url(${photoUrl})`;
         } else {
            document.body.style.backgroundImage =
               "url('https://source.unsplash.com/1600x900/?" + name + "')";
