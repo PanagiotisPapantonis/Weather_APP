@@ -38,7 +38,7 @@ let weather = {
 
     //renia
     const pexelsApiKey = 't55JsDB4A5n1Bm1dtI74rhLK65M9abqIvvNp2gbztN4BSXjVnS2OQhrc';
-    const pexelsApiUrl = `https://api.pexels.com/v1/search?query=${city}&per_page=1`;
+    const pexelsApiUrl = "https://api.pexels.com/v1/search?query=${?city}&per_page=1";
 
     fetch(pexelsApiUrl, {
       headers: {
