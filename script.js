@@ -55,10 +55,10 @@ let weather = {
               "url('https://source.unsplash.com/1600x900/?" + name + "')";
         }
       })
-      .catch(error => {
-        console.error('Error:', error);
-        document.querySelector('.img').style.backgroundImage = '';
-      });
+      // .catch(error => {
+      //   console.error('Error:', error);
+      //   document.querySelector('.img').style.backgroundImage = '';
+      // });
       //telos renia
 
 
