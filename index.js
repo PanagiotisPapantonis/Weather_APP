@@ -1,5 +1,5 @@
 require("dotenv").config();
- apiKey = process.env.apiKey;
+const apiKey = process.env.apiKey;
 let weather = {
   
   fetchWeather: function (city) {
