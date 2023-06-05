@@ -1,5 +1,7 @@
+require("dotenv").config();
+const apiKey = proccess.env.apiKey;
 let weather = {
-   apiKey: Process.env,
+  
   fetchWeather: function (city) {
     fetch(
       "https://api.openweathermap.org/data/2.5/weather?q=" +
