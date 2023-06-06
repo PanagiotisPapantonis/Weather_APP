@@ -1,8 +1,8 @@
 // require("dotenv").config();
 // const apiKey = process.env.apiKey;
-apiKey = "c082827540eee0a78fe45b93fe26fe8b" // untill i fix this 
+
 let weather = {
-  
+  apiKey : "c082827540eee0a78fe45b93fe26fe8b", // untill i fix this 
   fetchWeather: function (city) {
     fetch(
       "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + this.apiKey
